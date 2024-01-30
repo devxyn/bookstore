@@ -40,7 +40,7 @@ app.get("/books", async (req, res) => {
   res.status(200).json({ data: await bookRepository.getAllBooks() });
 });
 
-// GET - Get a book - /book/:bookId
+// GET - Get a book - /book/:id
 app.get("/book/:id", async (req, res) => {
   try {
     const book = await bookRepository.findById(req.params.id);
@@ -49,7 +49,7 @@ app.get("/book/:id", async (req, res) => {
     res.status(404).json({ message: e.message || "The book does not exist." });
   }
 });
-// PATCH - Patch a book - /book/:bookId
+// PATCH - Patch a book - /book/:id
 app.patch("/book/:id", async (req, res) => {
   try {
     const book = await bookRepository.updateById(req.params.id, req.body);
@@ -59,7 +59,7 @@ app.patch("/book/:id", async (req, res) => {
   }
 });
 
-// DELETE - Delete a book - /book/:bookId
+// DELETE - Delete a book - /book/:id
 app.delete("/book/:id", async (req, res) => {
   try {
     await bookRepository.deleteById(req.params.id);
